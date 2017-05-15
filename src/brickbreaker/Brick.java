@@ -19,7 +19,6 @@ public class Brick {
     
     // Constructors
     public Brick() {
-        
         width = 40;
         height = 20;
         density = 1;
@@ -40,6 +39,14 @@ public class Brick {
     int getHeight() {
         return height;
     }
+
+    public int getDensity() {
+        return density;
+    }
+
+    public void setDensity(int density) {
+        this.density = density;
+    }
     
     void setPosition(int x, int y) {
         this.x = x;
@@ -47,7 +54,19 @@ public class Brick {
     }
     // Draw
     public void draw(Graphics2D g) {
-        g.setColor(Color.BLACK);
+        switch(density){
+            case 1:
+                g.setColor(Color.BLACK);
+                break;
+            case 2:
+                g.setColor(Color.MAGENTA);
+                break;
+            case 3:
+                g.setColor(Color.RED);
+                break;
+        }
+                
+        
         g.fillRect((int)x, y, width, height);
     }
 }

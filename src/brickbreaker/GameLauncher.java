@@ -16,8 +16,10 @@ public class GameLauncher {
     public static int WIDTH = 720, HEIGHT = 500;
     
     public static void main(String[] args) {
-        
         BrickFrame frame = new BrickFrame();
+        Thread thread = new Thread(frame);
+        
+        thread.start();
         
         frame.setVisible(true);
     }

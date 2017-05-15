@@ -15,7 +15,7 @@ import java.awt.Graphics2D;
 
 public class Ball {
     private int x,y,dx,dy;
-    private int ballsize = 16;
+    private int ballsize = 8;
     
     public Ball() {
         x = GameLauncher.WIDTH / 2 - 4;
@@ -25,15 +25,15 @@ public class Ball {
         dy = -2;
     }
     
-    public void update(Paddle p, Play panel) {
+    public void update(Paddle p, PlayPanel panel) {
         setPosition(p,panel);
     }
     
-    public void update(Brick b, Play panel) {
+    public void update(Brick b, PlayPanel panel) {
         setPosition(b, panel);
     }
     
-    public void setPosition(Paddle p, Play panel) {
+    public void setPosition(Paddle p, PlayPanel panel) {
         
         x += dx;
         y += dy;
@@ -47,7 +47,8 @@ public class Ball {
         if(x > GameLauncher.WIDTH - (2*ballsize)) {
             dx = -dx;
         }
-        if(y > GameLauncher.HEIGHT - (ballsize)) {
+//        System.out.println(y + " " + (GameLauncher.HEIGHT - ballsize));
+        if(y > (GameLauncher.HEIGHT - ballsize)) {
             panel.lose = true;
         }
         
@@ -63,11 +64,11 @@ public class Ball {
         }
     }
     
-    public void setPosition(Brick b, Play panel) {
+    public void setPosition(Brick b, PlayPanel panel) {
         if (b.density > 0) {
             if (y + ballsize >= b.getPosY() && y <= b.getPosY() + b.getHeight() ) {
                 if ( x + ballsize>= b.getPosX() && x <= b.getPosX() + b.getWidth()) {
-                    b.density = 0;
+                    b.density--;
                     if (y + ballsize == b.getPosY() || y == b.getPosY() + b.getHeight()){
                         dy = -dy;
                         panel.score += 5;
